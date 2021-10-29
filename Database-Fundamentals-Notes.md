@@ -7,15 +7,81 @@ NOTE: In most cases, exams do NOT cover preview features, and some features will
 # Understanding core database concepts (20–25%)
 ## Understand how data is stored in tables
 - understand what a table is and how it relates to the data that will be stored in the database; columns/fields, rows/records
+    - Tables store data. Columns/fields describe the data that is stored within the table. Rows/records are the pieces of data defined by the columns/fields.
 ## Understand relational database concepts
 - understand what a relational database is, the need for relational database management systems (RDBMS), and how relations are established
+    - Relational databases are a form of database where tables are connected to eachother through like fields. This is opposed to a Hierarchical datadase where tables are in a format similar to a file directory with each record being exclusive to its branch in the tree, or a flat-file like a CSV which strictly has a single set of columns and rows. 
 ## Understand data manipulation language (DML)
 - understand what DML is and its role in databases
+    - Data Manipulation Language is a computer language used for creating, reading, modifying, or deleting data. 
+        - SELECT : Retrieves rows from the database and enables selection of one or more rows and columns from one or more tables
+        - INSERT : Add one or more rows to a table or view
+        - UPDATE : Changes existing data in a table or view
+        - DELETE : Removes one or more rows from a table or view
+        - MERGE : Performs INSERT, UPDATE, or DELETE on a table based on the results of a join with a source table
+        - BULK INSERT : Imports a data file into a table or view 
 ## Understand data definition language (DDL)
 - understand how T-SQL can be used to create database objects, such as tables and views
+    - Data Defenition Language defines data structures. These statements are used to create and change the tables of a database
+        - CREATE : Enables creating a item in SQL server. Examples include databases, tables, views, users, and indexes.
+        - ALTER : Enables modifying an existing object. Examples include databases, tables, views, users, and indexes.
+        - DROP : Drops an existing object, removing it.
+        - Collations : Defines how the data in a object can be stored, retrieved, and compared.
+        - ENABLE TRIGGER : Enables a DML, DDL, or login trigger.
+            - A trigger is a event that runs when conditions are met that would activate the trigger.
+            - DML triggers occur when a INSERT, UPDATE, or DELETE is attempted.
+            - DDL triggers occur when a CREATE, ALTER, or DROP is attempted.
+            - Login triggers occur during a logon event.
+        - DISABLE TRIGGER : Disables a trigger.
+        - RENAME : Renames an user created table in SQL Data Warehouse or a user-created table or database in Parallel Data Warehouse.
+        - UPDATE STATISTICS : Updates query optimization statistics on a table or indexed view.
+        - USE : Changes the database context to the specified database or database snapshot in SQL Server.
+        - TRUNCATE : Used to remove multiple rows from a table or partition of a table without logging the individual row deletions.
 # Create database objects (20–25%)
 ## Choose data types
 - understand what data types are, why they are important, and how they affect storage requirements
+    - Data Type is an attribute that states what kind of data an object can hold. There are many data types sorted into the following categories: 
+        - Exact numerics
+            - tinyint : 0 to 255 taking up 1 byte
+            - smallint : -2^15 to 2^15 taking up 2 bytes
+            - int : -2^31 to 2^32 or 4 bytes
+            - bigint : -2^63 to 2^63 or 8 bytes
+            - decimal, numeric : Fixed precision and scale numbers from 10^38+1 to 10^38-1.
+            - bit : An integer that can be 1, 0, or _NULL_.
+            - money, smallmoney : Accurate to a ten-thousandth. Use a period to seperate monetary units. Smallmoney is 4 bytes, money is 8 bytes
+        - Approximate numerics
+            - float : The mantissa of a number (The "pattern" instead of the exponent in scientific notation) with dictation for the precision and storage size. 
+                - float[(n)] : n = 1 to 24 : 7 digits and 4 bytes
+                - float[(n)] : n = 25 to 53 : 15 digits and 8 bytes
+            - real : 7 digits of precision, the same as float(24) using 4 bytes.
+        - Date and time
+            - date
+            - datetimeoffset
+            - datetime2
+            - smalldatetime
+            - datetime
+            - time
+        - Character strings
+            - char
+            - varchar
+            - text
+        - Unicode character strings
+            - nchar : Fixed-length string data. nchar[(n)] n defines the string length in byte-pairs and n = 1 to 4,000 (n x 2 bytes)
+            - nvarchar : Variable-length string data. nvarchar[(n)] defines the string length in byte-pairs and n = 1 to 4,000 (n x 2 bytes)
+            - ntext : Variable-length Unicode data with n = 0 to 2^30-1 (n x 2 bytes)
+        - Binary strings
+            - binary : Fixed-length binary data with a length of n = 1 to 8,000 (n bytes)
+            - varbinary
+            - image : Variable-length binary data of 0 to 2^31 - 1 bytes (Up to 2GB). Can be used for documents and files other than images.
+        - Other data types
+            - cursor
+            - rowversion
+            - hierarchyid
+            - uniqueidentifier
+            - sql_variant
+            - xml
+        - Spatial Geometry Types
+            - table
 ## Understand tables and how to create them
 - purpose of tables; create tables in a database by using proper ANSI SQL syntax
 ## Create views
