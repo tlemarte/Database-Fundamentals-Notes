@@ -55,37 +55,47 @@ NOTE: In most cases, exams do NOT cover preview features, and some features will
                 - float[(n)] : n = 25 to 53 : 15 digits and 8 bytes
             - real : 7 digits of precision, the same as float(24) using 4 bytes.
         - Date and time
-            - date
-            - datetimeoffset
-            - datetime2
-            - smalldatetime
-            - datetime
-            - time
+            - date : defines a date in sql server
+            - datetimeoffset : datetime with time zone awareness
+            - datetime2 : expanded datetime with user specified precision
+            - smalldatetime : datetime without seconds or fractional seconds
+            - datetime : data and time with fractional seconds
+            - time : time of day without timezone awareness
         - Character strings
-            - char
-            - varchar
-            - text
+            - char : fixed-length character string. char [(n)] has a length of n = 1 to 8000 bytes
+            - varchar : variable-length character string. Storage is the actual length of the data in bytes.
+                - varchar [(n)] has a length of n = 1 to 8000 bytes
+                - varchar [(max)] has a length of n = 1 to 2^31 - 1 bytes (2GB)
+            - text : variable-length non-unicode character string. text has a maximum length of 2^31 - 1 bytes (2GB)
         - Unicode character strings
             - nchar : Fixed-length string data. nchar[(n)] n defines the string length in byte-pairs and n = 1 to 4,000 (n x 2 bytes)
             - nvarchar : Variable-length string data. nvarchar[(n)] defines the string length in byte-pairs and n = 1 to 4,000 (n x 2 bytes)
             - ntext : Variable-length Unicode data with n = 0 to 2^30-1 (n x 2 bytes)
         - Binary strings
             - binary : Fixed-length binary data with a length of n = 1 to 8,000 (n bytes)
-            - varbinary
+            - varbinary : Variable-length binary data. Stores the length of the data + 2 bytes.
+                - varbinary ([n]) has a length of n = 1 to 8,000 (n bytes)
+                - varbinary [(max)] has a length of n = 1 to 2^31 -1 (2GB))
             - image : Variable-length binary data of 0 to 2^31 - 1 bytes (Up to 2GB). Can be used for documents and files other than images.
         - Other data types
-            - cursor
-            - rowversion
-            - hierarchyid
-            - uniqueidentifier
-            - sql_variant
-            - xml
-        - Spatial Geometry Types
-            - table
+            - cursor : A database object used to retrieve OUTPUT parameters from a stored procedure.
+            - rowversion : A unique value that is updated every time a row is updated.
+            - hierarchyid : variable length binary data that is used to represent a hierarchy of rows in a table.
+            - uniqueidentifier : A 6-byte globally unique identifier (GUID) that is used to identify a row in a table.
+            - sql_variant : stores values of various SQL Server supported data types.
+            - xml : Data type that stores XML data.
+            - Spatial Geometry and Geography Types: Implemented as a .NET common language runtime (CLR) type.
+            - table : Used for temporary storage of a set of rows returned as the result of a table-valued function.
 ## Understand tables and how to create them
-- purpose of tables; create tables in a database by using proper ANSI SQL syntax
+- purpose of tables
+    - Tables contain all the data in a database in a row-and-column format.
+    - A table can have up to 1024 columns. 30,000 columns if you are using SPARSE.
+    - You can assign properties to a table, on columns, and use compression.
+- create tables in a database by using proper ANSI SQL syntax
 ## Create views
 - understand when to use views and how to create a view by using T-SQL or a graphical designer
+    - A view is a virtual table that is used to access data in a table or another view.
+    - A view acts like a filter on tables and can reference columns from other tables.
 ## Create stored procedures and functions
 - select, insert, update, or delete data
 # Manipulate data (25–30%)
